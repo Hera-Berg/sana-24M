@@ -1,0 +1,35 @@
+model:
+  vocab_size: 16000
+  hidden_dim: 384
+  num_layers: 10
+  num_heads: 6
+  ffn_multiplier: 2.667
+  max_seq_len: 512
+  dropout: 0.1
+  rope_base: 10000
+  tie_embeddings: true
+
+training:
+  output_dir: checkpoints/pretrain
+  tokenizer_path: tokenizer/sana_tokenizer/tokenizer.json
+  data_dir: data/pretrain_bin
+  batch_size: 256
+  gradient_accumulation: 1
+  max_seq_len: 512
+  learning_rate: 3.0e-4
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  warmup_steps: 200
+  passes: 1.0
+  save_every: 1000
+  bf16: true
+  fp16: false
+  gradient_checkpointing: false
+  use_compile: true
+  dataloader_workers: 8
+  log_every: 25
+  val_every: 500
+  val_frac: 0.02
+  seed: 42
