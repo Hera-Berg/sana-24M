@@ -1,0 +1,33 @@
+model:
+  vocab_size: 16000
+  hidden_dim: 384
+  num_layers: 10
+  num_heads: 6
+  ffn_multiplier: 2.667
+  max_seq_len: 512
+  dropout: 0.0
+  rope_base: 10000
+  tie_embeddings: true
+
+training:
+  pretrain_checkpoint: checkpoints/pretrain/ckpt_015949.pt
+  output_dir: checkpoints/finetune
+  tokenizer_path: tokenizer/sana_tokenizer/tokenizer.json
+  data_path: data/sft_direct.jsonl
+  batch_size: 4
+  gradient_accumulation: 4
+  max_seq_len: 512
+  learning_rate: 1.5e-5
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  warmup_steps: 50
+  num_epochs: 10
+  early_stop_loss: null
+  freeze_layers: 0
+  save_every_epoch: true
+  fp16: true
+  bf16: false
+  gradient_checkpointing: false
+  log_every: 10
